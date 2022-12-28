@@ -1,4 +1,5 @@
-import asavio.dynamokt.dsl.Client
+import asavio.dynamokt.services.Client
+
 import asavio.dynamokt.dsl.dynamoClient
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
