@@ -1,51 +1,37 @@
+import asavio.dynamokt.dsl.Client
+import asavio.dynamokt.dsl.dynamoClient
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
-import software.amazon.awssdk.regions.Region
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
 import java.lang.Exception
 
 
-const val ACCESS = ""
-const val SECRET = ""
 fun main(args: Array<String>) {
 
-    val client = DynamoDbClient.builder()
-        .region(Region.US_EAST_1)
-        .credentialsProvider(
-            StaticCredentialsProvider.create(
-                AwsBasicCredentials.create(
-                    ACCESS,
-                    SECRET
-                )
-            )
-        ).build()
+    val client = dynamoClient {
+        accessKey = ""
+        secretKey = ""
+        region = "us-east-1"
+    }
 
-    val person = Person("askjdha", 26, "Aseem").toMap()
+    val person = Person("hdkajshdakjd", 26, "Aseem").toMap()
     client.save("person", person)
 }
 
-fun DynamoDbClient.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
+fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
     val request = PutItemRequest.builder()
         .tableName(tableName)
         .item(map)
         .build()
 
     return try {
-        putItem(request)
+        client.putItem(request)
         true
     } catch (e: Exception) {
         println(e)
         false
     }
-}
-
-fun <T : Any> T.dict(): Map<String, Any> {
-
-    return mapOf()
 }
 
 @Serializable
@@ -63,7 +49,7 @@ inline fun <reified T> T.toMap(): Map<String, AttributeValue> {
 
 fun jsonObjectToMap(element: JsonObject): Map<String, AttributeValue> {
     return element.entries.associate {
-        it.key to when(extractValue(it.value)) {
+        it.key to when (extractValue(it.value)) {
             is String -> it.value.toString().s
             is Int -> it.value.toString().s
             else -> it.value.toString().s
