@@ -1,25 +1,34 @@
-import asavio.dynamokt.services.Client
-
 import asavio.dynamokt.dsl.dynamoClient
+import asavio.dynamokt.services.*
+import asavio.dynamokt.services.dynamoNumber
+import asavio.dynamokt.services.dynamoString
 import asavio.dynamokt.services.toMap
 import kotlinx.serialization.Serializable
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
-import java.lang.Exception
 
 
 fun main(args: Array<String>) {
 
-    /*val client = dynamoClient {
+    val client = dynamoClient {
         accessKey = ""
         secretKey = ""
         region = "us-east-1"
-    }*/
+    }
 
-    val person = Person("jdhgsdjashgdsajhd", 26, "Aseem", Address("Vencode", "Kanyakumari")).toMap()
+    val person = Person("a", 25, "Aseem", Address("Vencode", "Kanyakumari", 111)).toMap()
+    //print(person)
 
-    print(person)
-//client.save("person", person)
+
+    //client.save("person", person)
+    val findRes = client.find("person", mapOf(
+        "uuid" to "asd".dynamoString,
+        "age" to 25.dynamoNumber
+    ))
+
+    println(findRes)
+    println(findRes.toPureMap())
 }
 
 fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
@@ -38,6 +47,19 @@ fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
     }
 }
 
+fun Client.find(tableName: String, findBy: Map<String, AttributeValue>): Map<String, AttributeValue> {
+    val request = GetItemRequest.builder()
+        .key(findBy)
+        .tableName(tableName)
+        .build()
+    return try {
+        client.getItem(request).item()
+    } catch (e: Exception) {
+        println(e)
+        emptyMap()
+    }
+}
+
 @Serializable
 data class Person(
     val uuid: String,
@@ -49,14 +71,7 @@ data class Person(
 @Serializable
 data class Address(
     val street: String,
-    val city: String
-
+    val city: String,
+    val zip: Int
 )
-
-
-
-
-val String.s get() = AttributeValue.builder().s(this).build()
-val Int.s get() = AttributeValue.builder().s(this.toString()).build()
-
 

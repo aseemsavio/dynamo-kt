@@ -1,6 +1,5 @@
 package asavio.dynamokt.services
 
-import kotlinx.serialization.json.*
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
 /**
@@ -33,26 +32,13 @@ internal val Double.dynamoNumber get() = AttributeValue.builder().n(this.toStrin
  */
 internal val Boolean.dynamoBoolean get() = AttributeValue.builder().bool(this).build()
 
+/**
+ * Converts a [Map] of [String] and [AttributeValue] to a Dynamo Map.
+ */
+internal val Map<String, AttributeValue>.dynamoMap get() = AttributeValue.builder().m(this).build()
 
-internal inline fun <reified T> T.toMap(): Map<String, AttributeValue> {
-    val JSON = Json { encodeDefaults = true }
-    return jsonObjectToMap(JSON.encodeToJsonElement(this).jsonObject)
-}
-
-internal fun jsonObjectToMap(element: JsonObject): Map<String, AttributeValue> {
-    return element.entries.associate {
-        it.key to extractValue(it.value)
-    }
-}
-
-private fun extractValue(element: JsonElement): AttributeValue {
-    return when (element) {
-        is JsonNull -> AttributeValue.builder().nul(true).build()
-        is JsonPrimitive -> if (element.content.all { char -> char.isDigit() }) element.content.dynamoNumber else element.content.dynamoString
-        is JsonArray -> AttributeValue.builder().nul(true).build() // todo edit
-        is JsonObject -> AttributeValue.builder().nul(true).build() // todo edit
-        //is JsonObject -> jsonObjectToMap(element)
-    }
-}
-
+/**
+ * Returns a Null for Dynamo DB
+ */
+internal val dynamoNull get() = AttributeValue.builder().nul(true).build()
 
