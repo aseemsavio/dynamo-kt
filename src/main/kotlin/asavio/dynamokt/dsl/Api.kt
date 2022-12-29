@@ -10,3 +10,4 @@ import asavio.dynamokt.services.DynamoDbClientBuilder
  */
 fun dynamoClient(fn: DynamoDbClientBuilder.() -> Unit): Client = DynamoDbClientBuilder().apply(fn).build()
 
+
