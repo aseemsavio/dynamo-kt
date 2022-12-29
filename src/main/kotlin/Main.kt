@@ -1,8 +1,10 @@
 import asavio.dynamokt.dsl.dynamoClient
-import asavio.dynamokt.services.*
-import asavio.dynamokt.services.dynamoNumber
-import asavio.dynamokt.services.dynamoString
-import asavio.dynamokt.services.toMap
+import asavio.dynamokt.services.Client
+import asavio.dynamokt.services.serde.dynamoNumber
+import asavio.dynamokt.services.serde.dynamoString
+import asavio.dynamokt.services.serde.toDynamoMap
+import asavio.dynamokt.services.serde.toPureMap
+
 import kotlinx.serialization.Serializable
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest
@@ -17,7 +19,7 @@ fun main(args: Array<String>) {
         region = "us-east-1"
     }
 
-    val person = Person("a", 25, "Aseem", Address("Vencode", "Kanyakumari", 111)).toMap()
+    val person = Person("a", 25, "Aseem", Address("Vencode", "Kanyakumari", 111)).toDynamoMap()
     //print(person)
 
 

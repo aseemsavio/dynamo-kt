@@ -1,10 +1,9 @@
-package asavio.dynamokt.services
+package asavio.dynamokt.services.serde
 
 import kotlinx.serialization.json.*
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
-
-internal inline fun <reified T> T.toMap(): Map<String, AttributeValue> {
+internal inline fun <reified T> T.toDynamoMap(): Map<String, AttributeValue> {
     val JSON = Json { encodeDefaults = true }
     return jsonObjectToMap(JSON.encodeToJsonElement(this).jsonObject)
 }
@@ -23,5 +22,3 @@ private fun extractValue(element: JsonElement): AttributeValue {
         is JsonObject -> jsonObjectToMap(element).dynamoMap
     }
 }
-
-
