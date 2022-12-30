@@ -3,12 +3,17 @@ package asavio.dynamokt.services.serde
 import kotlinx.serialization.json.*
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
-internal inline fun <reified T> T.toDynamoMap(): Map<String, AttributeValue> {
-    val JSON = Json { encodeDefaults = true }
-    return jsonObjectToMap(JSON.encodeToJsonElement(this).jsonObject)
+/**
+ * Converts a given Data Class into a format understood by Dynamo DB.
+ */
+inline fun <reified T> dynamoData(fn: () -> T) = fn().toDynamoMap()
+
+inline fun <reified T> T.toDynamoMap(): Map<String, AttributeValue> {
+    val json = Json { encodeDefaults = true }
+    return jsonObjectToMap(json.encodeToJsonElement(this).jsonObject)
 }
 
-internal fun jsonObjectToMap(element: JsonObject): Map<String, AttributeValue> {
+fun jsonObjectToMap(element: JsonObject): Map<String, AttributeValue> {
     return element.entries.associate {
         it.key to extractValue(it.value)
     }

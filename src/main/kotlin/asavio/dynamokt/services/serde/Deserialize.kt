@@ -11,7 +11,6 @@ internal fun Map<String, AttributeValue>.toPureMap(): Map<String, Any?> = entrie
         N -> with(value.n()) {
             if (contains(".")) toDouble() else toLong()
         }
-
         BOOL -> value.bool()
         M -> value.m().toPureMap()
         NUL -> null
@@ -35,8 +34,8 @@ internal fun Map<String, Any?>.toJsonObject(): JsonObject =
     }
 
 internal inline fun <reified T : Any> JsonObject.toPojo(): T {
-    val JSON = Json { encodeDefaults = true }
-    return JSON.decodeFromJsonElement(this)
+    val json = Json { encodeDefaults = true }
+    return json.decodeFromJsonElement(this)
 }
 
 

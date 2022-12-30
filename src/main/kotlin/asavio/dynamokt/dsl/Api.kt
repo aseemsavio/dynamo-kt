@@ -2,6 +2,7 @@ package asavio.dynamokt.dsl
 
 import asavio.dynamokt.services.Client
 import asavio.dynamokt.services.DynamoDbClientBuilder
+import asavio.dynamokt.services.crud.CreateBuilder
 
 /**
  * This DSL creates a DynamoDB [Client] object. Accepts accessKey, secretKey and region.
@@ -10,4 +11,4 @@ import asavio.dynamokt.services.DynamoDbClientBuilder
  */
 fun dynamoClient(fn: DynamoDbClientBuilder.() -> Unit): Client = DynamoDbClientBuilder().apply(fn).build()
 
-
+fun Client.save(fn: CreateBuilder.() -> Unit) = CreateBuilder(this).apply(fn).build()

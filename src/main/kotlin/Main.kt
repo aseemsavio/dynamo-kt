@@ -1,15 +1,11 @@
 import asavio.dynamokt.dsl.dynamoClient
+import asavio.dynamokt.dsl.save
 import asavio.dynamokt.services.Client
 import asavio.dynamokt.services.serde.*
-import asavio.dynamokt.services.serde.dynamoNumber
-import asavio.dynamokt.services.serde.dynamoString
-import asavio.dynamokt.services.serde.toDynamoMap
-import asavio.dynamokt.services.serde.toPureMap
 
 import kotlinx.serialization.Serializable
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest
-import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
 import java.util.UUID
 
 
@@ -21,12 +17,29 @@ fun main(args: Array<String>) {
         region = "us-east-1"
     }
 
-    val person = Person(UUID.randomUUID().toString(), 25, "Aseem", Address("Vencode", "Kanyakumari", 111)).toDynamoMap()
+    val person = Person(
+        uuid = UUID.randomUUID().toString(),
+        age = 25,
+        name = "Aseem",
+        address = Address(
+            street = "Vencode",
+            city = "Kanyakumari",
+            zip = 111
+        )
+    )
 
+    val written = client.save {
+        table = "person"
+        data = dynamoData {
+            person
+        }
+    }
 
-    client.save("person", person)
+    println(written)
 
-    val findRes = client.find(
+    //client.save("person", person)
+
+    /*val findRes = client.find(
         "person", mapOf(
             "uuid" to "asd".dynamoString,
             "age" to 25.dynamoNumber
@@ -34,7 +47,7 @@ fun main(args: Array<String>) {
     )
 
     println(findRes)
-    println(findRes.toPureMap().toJsonObject().toPojo<Person>())
+    println(findRes.toPureMap().toJsonObject().toPojo<Person>())*/
 
     /*val map = mapOf(
         "uuid" to "agsdjhdg",
@@ -51,7 +64,7 @@ fun main(args: Array<String>) {
 
 }
 
-fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
+/*fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
     val request = PutItemRequest.builder()
         .tableName(tableName)
         .item(map)
@@ -65,7 +78,7 @@ fun Client.save(tableName: String, map: Map<String, AttributeValue>): Boolean {
         println(e)
         false
     }
-}
+}*/
 
 fun Client.find(tableName: String, findBy: Map<String, AttributeValue>): Map<String, AttributeValue> {
     val request = GetItemRequest.builder()
