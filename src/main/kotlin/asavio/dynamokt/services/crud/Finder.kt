@@ -15,8 +15,7 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue
  *     "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
  *     "age" to 25
  * )
- *```
- */
+ *``` */
 fun findBy(vararg pairs: Pair<String, Any>): Map<String, AttributeValue> = pairs.associate {
     val value = it.second
     it.first to when (value) {

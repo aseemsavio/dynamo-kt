@@ -3,6 +3,8 @@ package asavio.dynamokt.dsl
 import asavio.dynamokt.services.Client
 import asavio.dynamokt.services.DynamoDbClientBuilder
 import asavio.dynamokt.services.crud.CreateBuilder
+import asavio.dynamokt.services.crud.FindBuilder
+import asavio.dynamokt.services.serde.toPojo
 
 /**
  * This DSL creates a DynamoDB [Client] object. Accepts accessKey, secretKey and region.
@@ -17,7 +19,8 @@ import asavio.dynamokt.services.crud.CreateBuilder
  * }
  * ```
  */
-fun dynamoClient(fn: DynamoDbClientBuilder.() -> Unit): Client = DynamoDbClientBuilder().apply(fn).build()
+fun dynamoClient(fn: DynamoDbClientBuilder.() -> Unit): Client =
+    DynamoDbClientBuilder().apply(fn).build()
 
 /**
  * The [save] closure can be called on the [Client] object. It can be used to save (create and update) objects.
@@ -61,4 +64,26 @@ fun dynamoClient(fn: DynamoDbClientBuilder.() -> Unit): Client = DynamoDbClientB
  *     println(written)
  * ```
  */
-fun Client.save(fn: CreateBuilder.() -> Unit): Boolean = CreateBuilder(this).apply(fn).build()
+fun Client.save(fn: CreateBuilder.() -> Unit): Boolean =
+    CreateBuilder(this).apply(fn).build()
+
+/**
+ * Use this closure to find records.
+ *
+ * Example code:
+ *
+ * ```
+ *     val personFound = client.find<Person> {
+ *         table = "person"
+ *         findBy = findBy(
+ *             "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
+ *             "age" to 25
+ *         )
+ *     }
+ *
+ *     println(personFound)
+ * ```
+ */
+inline fun <reified T : Any> Client.find(fn: FindBuilder.() -> Unit): T? =
+    FindBuilder(this).apply(fn).build()?.toPojo<T>()
+

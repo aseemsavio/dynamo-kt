@@ -33,7 +33,7 @@ internal fun Map<String, Any?>.toJsonObject(): JsonObject =
         }
     }
 
-internal inline fun <reified T : Any> JsonObject.toPojo(): T {
+inline fun <reified T : Any> JsonObject.toPojo(): T {
     val json = Json { encodeDefaults = true }
     return json.decodeFromJsonElement(this)
 }
