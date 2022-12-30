@@ -1,6 +1,7 @@
 import asavio.dynamokt.dsl.dynamoClient
 import asavio.dynamokt.dsl.save
 import asavio.dynamokt.services.Client
+import asavio.dynamokt.services.crud.findBy
 import asavio.dynamokt.services.serde.*
 
 import kotlinx.serialization.Serializable
@@ -10,6 +11,8 @@ import java.util.UUID
 
 
 fun main(args: Array<String>) {
+
+
 
     val client = dynamoClient {
         accessKey = ""
@@ -36,6 +39,16 @@ fun main(args: Array<String>) {
     }
 
     println(written)
+    val personFound = client.find(
+        "person",
+        findBy(
+            "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
+            "age" to 25
+        )
+    ).toPureMap().toJsonObject().toPojo<Person>()
+    println(personFound)
+
+    //03b73fb6-c723-4884-a349-934c3d82cb4f
 
     //client.save("person", person)
 
