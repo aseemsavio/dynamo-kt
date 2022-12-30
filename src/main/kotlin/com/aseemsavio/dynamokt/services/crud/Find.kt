@@ -1,8 +1,8 @@
-package asavio.dynamokt.services.crud
+package com.aseemsavio.dynamokt.services.crud
 
-import asavio.dynamokt.services.Client
-import asavio.dynamokt.services.serde.toJsonObject
-import asavio.dynamokt.services.serde.toPureMap
+import com.aseemsavio.dynamokt.services.Client
+import com.aseemsavio.dynamokt.services.serde.toJsonObject
+import com.aseemsavio.dynamokt.services.serde.toPureMap
 import kotlinx.serialization.json.JsonObject
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest

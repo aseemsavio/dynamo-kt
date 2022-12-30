@@ -1,8 +1,8 @@
-import asavio.dynamokt.dsl.dynamoClient
-import asavio.dynamokt.dsl.find
-import asavio.dynamokt.dsl.save
-import asavio.dynamokt.services.crud.findBy
-import asavio.dynamokt.services.serde.*
+import com.aseemsavio.dynamokt.dsl.dynamoClient
+import com.aseemsavio.dynamokt.dsl.find
+import com.aseemsavio.dynamokt.dsl.save
+import com.aseemsavio.dynamokt.services.crud.findBy
+import com.aseemsavio.dynamokt.services.serde.dynamoData
 
 import kotlinx.serialization.Serializable
 import java.util.UUID
@@ -33,7 +33,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    println(written)
+    println("Written to Dynamo? $written")
 
     val personFound = client.find<Person> {
         table = "person"

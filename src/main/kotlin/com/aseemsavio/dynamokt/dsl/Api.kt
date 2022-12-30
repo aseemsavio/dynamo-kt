@@ -1,10 +1,10 @@
-package asavio.dynamokt.dsl
+package com.aseemsavio.dynamokt.dsl
 
-import asavio.dynamokt.services.Client
-import asavio.dynamokt.services.DynamoDbClientBuilder
-import asavio.dynamokt.services.crud.CreateBuilder
-import asavio.dynamokt.services.crud.FindBuilder
-import asavio.dynamokt.services.serde.toPojo
+import com.aseemsavio.dynamokt.services.Client
+import com.aseemsavio.dynamokt.services.DynamoDbClientBuilder
+import com.aseemsavio.dynamokt.services.crud.CreateBuilder
+import com.aseemsavio.dynamokt.services.crud.FindBuilder
+import com.aseemsavio.dynamokt.services.serde.toPojo
 
 /**
  * This DSL creates a DynamoDB [Client] object. Accepts accessKey, secretKey and region.

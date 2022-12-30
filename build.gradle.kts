@@ -6,11 +6,12 @@ plugins {
     application
 }
 
-group = "asavio.dynamokt"
+group = "com.aseemsavio.dynamokt"
 version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+
 }
 
 dependencies {

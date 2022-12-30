@@ -1,4 +1,4 @@
-package asavio.dynamokt.services
+package com.aseemsavio.dynamokt.services
 
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider

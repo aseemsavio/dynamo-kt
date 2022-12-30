@@ -1,9 +1,9 @@
-package asavio.dynamokt.services.crud
+package com.aseemsavio.dynamokt.services.crud
 
-import asavio.dynamokt.services.serde.dynamoBoolean
-import asavio.dynamokt.services.serde.dynamoNull
-import asavio.dynamokt.services.serde.dynamoNumber
-import asavio.dynamokt.services.serde.dynamoString
+import com.aseemsavio.dynamokt.services.serde.dynamoBoolean
+import com.aseemsavio.dynamokt.services.serde.dynamoNull
+import com.aseemsavio.dynamokt.services.serde.dynamoNumber
+import com.aseemsavio.dynamokt.services.serde.dynamoString
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
 /**

@@ -1,6 +1,6 @@
-package asavio.dynamokt.services.crud
+package com.aseemsavio.dynamokt.services.crud
 
-import asavio.dynamokt.services.Client
+import com.aseemsavio.dynamokt.services.Client
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
 

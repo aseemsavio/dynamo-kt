@@ -1,4 +1,4 @@
-package asavio.dynamokt.services.serde
+package com.aseemsavio.dynamokt.services.serde
 
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
