@@ -1,4 +1,4 @@
-package com.aseemsavio.dynamokt.services.crud
+package com.aseemsavio.dynamokt.services.crud.utils
 
 import com.aseemsavio.dynamokt.services.serde.dynamoBoolean
 import com.aseemsavio.dynamokt.services.serde.dynamoNull
@@ -16,7 +16,7 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue
  *     "age" to 25
  * )
  *``` */
-fun findBy(vararg pairs: Pair<String, Any>): Map<String, AttributeValue> = pairs.associate {
+fun filter(vararg pairs: Pair<String, Any>): Map<String, AttributeValue> = pairs.associate {
     val value = it.second
     it.first to when (value) {
         is Int -> value.dynamoNumber

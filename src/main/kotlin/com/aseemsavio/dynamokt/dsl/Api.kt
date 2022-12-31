@@ -4,6 +4,7 @@ import com.aseemsavio.dynamokt.services.Client
 import com.aseemsavio.dynamokt.services.DynamoDbClientBuilder
 import com.aseemsavio.dynamokt.services.crud.CreateBuilder
 import com.aseemsavio.dynamokt.services.crud.FindBuilder
+import com.aseemsavio.dynamokt.services.crud.RemoveBuilder
 import com.aseemsavio.dynamokt.services.serde.toPojo
 
 /**
@@ -87,3 +88,21 @@ fun Client.save(fn: CreateBuilder.() -> Unit): Boolean =
 inline fun <reified T : Any> Client.find(fn: FindBuilder.() -> Unit): T? =
     FindBuilder(this).apply(fn).build()?.toPojo<T>()
 
+/**
+ * Use this closure to remove items from tables.
+ *
+ * Example Code:
+ * ```
+ *     val deleted = client.remove {
+ *         table = "person"
+ *         by = filter(
+ *             "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
+ *             "age" to 25
+ *         )
+ *     }
+ *
+ *     println(deleted)
+ * ```
+ */
+fun Client.remove(fn: RemoveBuilder.() -> Unit): Boolean =
+    RemoveBuilder(this).apply(fn).build()

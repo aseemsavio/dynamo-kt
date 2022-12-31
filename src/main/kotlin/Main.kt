@@ -1,7 +1,8 @@
 import com.aseemsavio.dynamokt.dsl.dynamoClient
 import com.aseemsavio.dynamokt.dsl.find
+import com.aseemsavio.dynamokt.dsl.remove
 import com.aseemsavio.dynamokt.dsl.save
-import com.aseemsavio.dynamokt.services.crud.findBy
+import com.aseemsavio.dynamokt.services.crud.utils.filter
 import com.aseemsavio.dynamokt.services.serde.dynamoData
 
 import kotlinx.serialization.Serializable
@@ -37,13 +38,23 @@ fun main(args: Array<String>) {
 
     val personFound = client.find<Person> {
         table = "person"
-        findBy = findBy(
+        by = filter(
             "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
             "age" to 25
         )
     }
 
     println(personFound)
+
+    val deleted = client.remove {
+        table = "person"
+        by = filter(
+            "uuid" to "03b73fb6-c723-4884-a349-934c3d82cb4f",
+            "age" to 25
+        )
+    }
+
+    println(deleted)
 }
 
 @Serializable
