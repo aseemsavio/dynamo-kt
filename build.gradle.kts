@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `java-library`
     kotlin("jvm") version "1.9.0"
-    kotlin("kapt") version "1.9.0"
 }
 
 group = "com.aseemsavio"
