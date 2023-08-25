@@ -22,30 +22,41 @@ internal fun variables(
         )
     }
 
-internal fun javaType(variable: VariableElement, processingEnv: ProcessingEnvironment): JvmTypeElement {
+private fun kotlinType(javaType: JvmTypeElement): JvmTypeElement {
+
+    val kotlinType = when(javaType.fullyQualifiedType) {
+        "" -> ""
+        else -> ""
+    }
+
+    TODO()
+}
+
+private fun javaType(variable: VariableElement, processingEnv: ProcessingEnvironment): JvmTypeElement {
     val simpleName = variable.simpleName.toString()
     val type = typeElement(variable, processingEnv)
+
     return JvmTypeElement(
         name = simpleName,
-        fullyQualifiedType = type.first,
-        typeArgument = type.second?.firstOrNull()
+        fullyQualifiedType = type.first?.qualifiedName?.toString() ?: type.first?.simpleName.toString(),
+        typeArgument = type.second?.firstOrNull()?.toString()
     )
 }
 
-internal fun typeElement(
+private fun typeElement(
     variable: VariableElement,
     processingEnv: ProcessingEnvironment
-): Pair<TypeElement, List<TypeMirror>?> {
+): Pair<TypeElement?, List<TypeMirror>?> {
     val typeMirror = variable.asType()
     return if (typeMirror is DeclaredType) {
         Pair(typeMirror.asElement() as TypeElement, typeMirror.typeArguments)
     } else {
-        Pair((processingEnv.typeUtils.asElement(typeMirror) as? TypeElement)!!, null)
+        Pair((processingEnv.typeUtils.asElement(typeMirror) as? TypeElement), null)
     }
 }
 
 data class JvmTypeElement(
     val name: String,
-    val fullyQualifiedType: TypeElement,
-    val typeArgument: TypeMirror?
+    val fullyQualifiedType: String,
+    val typeArgument: String?
 )
