@@ -1,7 +1,7 @@
 package com.aseemsavio.dynamokt.annotations.processors
 
 import com.aseemsavio.dynamokt.annotations.DynamoKt
-import com.aseemsavio.dynamokt.annotations.processors.visitors.DynamoKtAnnotationVisitor
+import com.aseemsavio.dynamokt.annotations.visitors.DynamoKtAnnotationVisitor
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver

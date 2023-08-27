@@ -1,4 +1,4 @@
-package com.aseemsavio.dynamokt.annotations.processors.visitors
+package com.aseemsavio.dynamokt.annotations.visitors
 
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger

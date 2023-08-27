@@ -1,4 +1,4 @@
-package com.aseemsavio.dynamokt.annotations.processors.providers
+package com.aseemsavio.dynamokt.annotations.providers
 
 import com.aseemsavio.dynamokt.annotations.processors.DynamoKtAnnotationProcessor
 import com.google.devtools.ksp.processing.SymbolProcessor
