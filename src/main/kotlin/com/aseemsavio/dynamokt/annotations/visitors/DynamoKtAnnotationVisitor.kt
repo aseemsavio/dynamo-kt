@@ -1,5 +1,6 @@
 package com.aseemsavio.dynamokt.annotations.visitors
 
+import com.aseemsavio.dynamokt.annotations.codegen.dataClassInfo
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -11,8 +12,8 @@ class DynamoKtAnnotationVisitor(
 ) : KSVisitorVoid() {
 
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
-        val props = classDeclaration.getAllProperties().toList()
-        logger.info("my props: ${props.map { it.simpleName.getShortName() to it.type.toString() }}")
+        val dataClassInfo = classDeclaration.dataClassInfo
+        logger.info("data class info: $dataClassInfo")
     }
 
 }
