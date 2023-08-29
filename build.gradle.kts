@@ -23,6 +23,11 @@ dependencies {
     implementation("com.squareup:kotlinpoet:1.14.2")
     implementation("com.squareup:kotlinpoet-ksp:1.14.2")
 
+    /* AWS Stuff */
+    api(platform("software.amazon.awssdk:bom:2.20.135"))
+    // https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb
+    api("software.amazon.awssdk:dynamodb")
+
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 }
