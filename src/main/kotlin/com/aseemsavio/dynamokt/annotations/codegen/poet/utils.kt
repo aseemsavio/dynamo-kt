@@ -32,14 +32,25 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty): 
 
         "Set" -> {
             when (prop.typeParameters.first().typeName) {
-                "String" -> addStatement("attributeMap[\"${prop.name}\"] = ${prop.name}.stringSetAttributeValue()")
+                "String" -> addStatement(
+                    format = "attributeMap[%S] = %N.%M()",
+                    prop.name,
+                    prop.name,
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", simpleName = "attributeValueForStringSet")
+                )
+
                 in setOf(
                     "Int",
                     "Long",
                     "Float",
                     "Double",
                     "Number"
-                ) -> addStatement("attributeMap[\"${prop.name}\"] = ${prop.name}.numberSetAttributeValue()")
+                ) -> addStatement(
+                    format = "attributeMap[%S] = %N.%M()",
+                    prop.name,
+                    prop.name,
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", simpleName = "attributeValueForNumberSet")
+                )
             }
         }
 
