@@ -36,7 +36,10 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty): 
                     format = "attributeMap[%S] = %N.%M()",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", simpleName = "attributeValueForStringSet")
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValueForStringSet"
+                    )
                 )
 
                 in setOf(
@@ -49,12 +52,20 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty): 
                     format = "attributeMap[%S] = %N.%M()",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", simpleName = "attributeValueForNumberSet")
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValueForNumberSet"
+                    )
                 )
             }
         }
 
-        else -> addStatement("attributeMap[\"${prop.name}\"] = ${prop.name}.toAttributeMap().attributeValue")
+        else -> addStatement(
+            format = "attributeMap[%S] = %N.toAttributeMap().%M",
+            prop.name,
+            prop.name,
+            MemberName(packageName = "com.aseemsavio.dynamokt.extensions", simpleName = "attributeValue")
+        )
     }
 
 }
