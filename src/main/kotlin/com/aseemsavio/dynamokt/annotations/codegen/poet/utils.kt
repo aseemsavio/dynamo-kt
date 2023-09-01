@@ -5,11 +5,11 @@ import com.aseemsavio.dynamokt.annotations.codegen.KotlinProperty
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName
 
-internal fun FunSpec.Builder.addPropertiesToMap(dataClassInfo: KotlinDataClassInfo): FunSpec.Builder = apply {
+internal fun FunSpec.Builder.addPropertiesToMap(dataClassInfo: KotlinDataClassInfo) = apply {
     dataClassInfo.properties.forEach { addStatementAccordingToType(it) }
 }
 
-internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty): FunSpec.Builder = apply {
+internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) = apply {
     when (prop.type) {
         in setOf(
             "String",
