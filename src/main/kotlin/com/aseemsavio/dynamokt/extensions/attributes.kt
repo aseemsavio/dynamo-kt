@@ -22,6 +22,21 @@ fun Set<String>?.attributeValueForStringSet(): AttributeValue =
     if (null != this) AttributeValue.builder().ss(this).build()
     else AttributeValue.builder().nul(true).build()
 
+fun List<String>?.attributeValueForStringList() {
+    if (null != this) AttributeValue.builder().l(map { it.attributeValue }).build()
+    else AttributeValue.builder().nul(true).build()
+}
+
+fun List<Number>?.attributeValueForNumberList() {
+    if (null != this) AttributeValue.builder().l(map { it.attributeValue }).build()
+    else AttributeValue.builder().nul(true).build()
+}
+
+fun <T> List<T>?.attributeValueForObjectList(attributeValue: T.() -> AttributeValue) {
+    if (null != this) AttributeValue.builder().l(map { it.attributeValue() }).build()
+    else AttributeValue.builder().nul(true).build()
+}
+
 val AttributeMap?.attributeValue: AttributeValue
     get() = if (null != this) AttributeValue.builder().m(this).build()
     else AttributeValue.builder().nul(true).build()
