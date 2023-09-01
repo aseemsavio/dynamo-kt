@@ -14,13 +14,12 @@ val Boolean?.attributeValue: AttributeValue
     get() = if (null != this) AttributeValue.builder().bool(this).build()
     else AttributeValue.builder().nul(true).build()
 
-val Set<String>?.stringSetAttributeValue: AttributeValue
-    get() = if (null != this) AttributeValue.builder().ss(this).build()
+fun Set<Number>?.numberSetAttributeValue(): AttributeValue =
+    if (null != this) AttributeValue.builder().ns(this.map { it.toString() }).build()
     else AttributeValue.builder().nul(true).build()
 
-val Set<Number>?.numberSetAttributeValue: AttributeValue
-    get() = if (null != this) AttributeValue.builder().ns(this.map { it.toString() }).build()
-    else AttributeValue.builder().nul(true).build()
+fun Set<String>?.stringSetAttributeValue(): AttributeValue = if (null != this) AttributeValue.builder().ss(this).build()
+else AttributeValue.builder().nul(true).build()
 
 val AttributeMap?.attributeValue: AttributeValue
     get() = if (null != this) AttributeValue.builder().m(this).build()

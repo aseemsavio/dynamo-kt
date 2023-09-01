@@ -29,6 +29,8 @@ internal fun generateAttributeMapCode(
         fileName = "${dataClassInfo.simpleName}Ext"
     )
         .addImport(packageName = "com.aseemsavio.dynamokt.extensions", "attributeValue")
+        .addImport(packageName = "com.aseemsavio.dynamokt.extensions", "numberSetAttributeValue")
+        .addImport(packageName = "com.aseemsavio.dynamokt.extensions", "stringSetAttributeValue")
         .addImport(packageName = "software.amazon.awssdk.services.dynamodb.model", "AttributeValue")
         .addFileComment(
             """
