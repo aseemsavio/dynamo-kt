@@ -58,7 +58,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                 )
 
                 else -> addStatement(
-                    format = "attributeMap[%S] = %N.%M { toAttributeMap().%M }",
+                    format = if (prop.typeParameters.first().isNullable) "attributeMap[%S] = %N.%M { this?.toAttributeMap().%M }" else "attributeMap[%S] = %N.%M { this.toAttributeMap().%M }",
                     prop.name,
                     prop.name,
                     MemberName(
