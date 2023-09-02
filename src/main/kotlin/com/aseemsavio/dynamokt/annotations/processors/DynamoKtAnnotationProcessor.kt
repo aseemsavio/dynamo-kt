@@ -29,7 +29,8 @@ class DynamoKtAnnotationProcessor(
                     DynamoKtAnnotationVisitor(
                         codeGenerator = codeGenerator,
                         logger = logger
-                    ), Unit
+                    ),
+                    Unit
                 )
             }
         }

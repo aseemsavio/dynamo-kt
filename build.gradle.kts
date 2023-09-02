@@ -4,7 +4,7 @@ plugins {
     `java-library`
     kotlin("jvm") version "1.9.0"
     id("com.google.devtools.ksp") version "1.9.0-1.0.11"
-
+    id("org.jlleitschuh.gradle.ktlint") version "11.5.1"
 }
 
 group = "com.aseemsavio"

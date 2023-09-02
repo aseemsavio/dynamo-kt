@@ -113,7 +113,4 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
             )
         )
     }
-
 }
-
-

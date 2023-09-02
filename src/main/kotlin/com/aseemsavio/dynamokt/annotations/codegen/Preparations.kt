@@ -14,11 +14,15 @@ internal val KSClassDeclaration.dataClassInfo: KotlinDataClassInfo
                 typeParameters = it.type.resolve().arguments.mapNotNull { tp ->
                     val typeName = tp.type?.resolve()?.declaration?.simpleName?.getShortName()
 
-                    if (null != typeName) KotlinTypeParam(
-                        typeName = typeName,
-                        packageName = tp.type?.resolve()?.declaration?.packageName?.asString()!!,
-                        isNullable = tp.type?.resolve()?.isMarkedNullable!!
-                    ) else null
+                    if (null != typeName) {
+                        KotlinTypeParam(
+                            typeName = typeName,
+                            packageName = tp.type?.resolve()?.declaration?.packageName?.asString()!!,
+                            isNullable = tp.type?.resolve()?.isMarkedNullable!!
+                        )
+                    } else {
+                        null
+                    }
                 },
                 isNullable = it.type.resolve().isMarkedNullable
             )
