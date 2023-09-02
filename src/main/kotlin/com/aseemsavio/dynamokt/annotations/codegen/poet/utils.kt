@@ -30,7 +30,47 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
         )
 
         "List" -> {
+            when (prop.typeParameters.first().typeName) {
+                "String" -> addStatement(
+                    format = "attributeMap[%S] = %N.%M()",
+                    prop.name,
+                    prop.name,
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValueForStringList"
+                    )
+                )
 
+                in setOf(
+                    "Int",
+                    "Long",
+                    "Float",
+                    "Double",
+                    "Number"
+                ) -> addStatement(
+                    format = "attributeMap[%S] = %N.%M()",
+                    prop.name,
+                    prop.name,
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValueForNumberList"
+                    )
+                )
+
+                else -> addStatement(
+                    format = "attributeMap[%S] = %N.%M { toAttributeMap().%M }",
+                    prop.name,
+                    prop.name,
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValueForObjectList"
+                    ),
+                    MemberName(
+                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        simpleName = "attributeValue"
+                    )
+                )
+            }
         }
 
         "Set" -> {
