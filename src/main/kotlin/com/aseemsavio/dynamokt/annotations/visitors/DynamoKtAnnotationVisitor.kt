@@ -7,7 +7,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 
-class DynamoKtAnnotationVisitor(
+internal class DynamoKtAnnotationVisitor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger
 ) : KSVisitorVoid() {

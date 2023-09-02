@@ -102,3 +102,9 @@ Thank you for contributing to [dynamokt]()!
 ```
 ./gradlew ktlintFormat
 ```
+
+### Generating HTML Kotlin Documentation
+
+```
+./gradlew dokkaHtml
+```
