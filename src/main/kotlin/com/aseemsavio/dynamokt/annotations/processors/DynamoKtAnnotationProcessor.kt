@@ -10,7 +10,7 @@ import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.validate
 
-class DynamoKtAnnotationProcessor(
+internal class DynamoKtAnnotationProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger
 ) : SymbolProcessor {
@@ -29,7 +29,8 @@ class DynamoKtAnnotationProcessor(
                     DynamoKtAnnotationVisitor(
                         codeGenerator = codeGenerator,
                         logger = logger
-                    ), Unit
+                    ),
+                    Unit
                 )
             }
         }

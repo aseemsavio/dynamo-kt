@@ -13,13 +13,12 @@ import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
-internal fun generateAttributeMapCode(
+internal fun generateDynamoKtCode(
     dataClassInfo: KotlinDataClassInfo,
     classDeclaration: KSClassDeclaration,
     codeGenerator: CodeGenerator,
     logger: KSPLogger
 ) {
-
     val mapType =
         Map::class.asClassName().parameterizedBy(String::class.asTypeName(), AttributeValue::class.asTypeName())
 

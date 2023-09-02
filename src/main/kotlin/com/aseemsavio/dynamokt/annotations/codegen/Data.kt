@@ -10,7 +10,7 @@ internal data class KotlinProperty(
     val name: String,
     val type: String,
     val typeParameters: List<KotlinTypeParam>,
-    val isNullable: Boolean,
+    val isNullable: Boolean
 )
 
 internal data class KotlinTypeParam(
