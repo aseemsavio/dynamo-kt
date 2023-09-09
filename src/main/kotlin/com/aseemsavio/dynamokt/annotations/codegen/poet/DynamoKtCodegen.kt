@@ -47,7 +47,7 @@ internal fun generateDynamoKtCode(
     ).addFunction(
         FunSpec.builder(
             name = "to${dataClassInfo.simpleName}"
-        ).receiver(ClassName(packageName = "com.aseemsavio.dynamokt.extensions", "AttributeMap"))
+        ).receiver(ClassName(packageName = "com.aseemsavio.dynamokt.extensions.attributes", "AttributeMap"))
             .returns(ClassName(packageName = dataClassInfo.packageName, dataClassInfo.simpleName))
             .addKdoc(
                 """

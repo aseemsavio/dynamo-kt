@@ -24,7 +24,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
             prop.name,
             prop.name,
             MemberName(
-                packageName = "com.aseemsavio.dynamokt.extensions",
+                packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                 simpleName = "attributeValue"
             )
         )
@@ -36,7 +36,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                     prop.name,
                     prop.name,
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValueForStringList"
                     )
                 )
@@ -52,7 +52,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                     prop.name,
                     prop.name,
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValueForNumberList"
                     )
                 )
@@ -62,11 +62,11 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                     prop.name,
                     prop.name,
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValueForObjectList"
                     ),
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValue"
                     )
                 )
@@ -80,7 +80,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                     prop.name,
                     prop.name,
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValueForStringSet"
                     )
                 )
@@ -96,7 +96,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
                     prop.name,
                     prop.name,
                     MemberName(
-                        packageName = "com.aseemsavio.dynamokt.extensions",
+                        packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                         simpleName = "attributeValueForNumberSet"
                     )
                 )
@@ -108,7 +108,7 @@ internal fun FunSpec.Builder.addStatementAccordingToType(prop: KotlinProperty) =
             prop.name,
             prop.name,
             MemberName(
-                packageName = "com.aseemsavio.dynamokt.extensions",
+                packageName = "com.aseemsavio.dynamokt.extensions.attributes",
                 simpleName = "attributeValue"
             )
         )

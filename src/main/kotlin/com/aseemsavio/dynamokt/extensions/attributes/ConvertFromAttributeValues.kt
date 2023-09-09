@@ -1,4 +1,4 @@
-package com.aseemsavio.dynamokt.extensions
+package com.aseemsavio.dynamokt.extensions.attributes
 
 /**
  * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [String]

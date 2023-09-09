@@ -1,4 +1,4 @@
-package com.aseemsavio.dynamokt.extensions
+package com.aseemsavio.dynamokt.extensions.attributes
 
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 
