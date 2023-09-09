@@ -13,21 +13,20 @@ internal fun FunSpec.Builder.generateDataClassConstructionCode(dataClassInfo: Ko
 }
 
 internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = apply {
-
     when (prop.type) {
         "String" -> when (prop.isNullable) {
             true -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringFrom")
             )
         }
 
@@ -36,14 +35,14 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerFrom")
             )
         }
 
@@ -52,14 +51,14 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatFrom")
             )
         }
 
@@ -68,14 +67,14 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleFrom")
             )
         }
 
@@ -84,14 +83,14 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongFrom")
             )
         }
 
@@ -100,60 +99,59 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableBooleanFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableBooleanFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\" %M this,",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asBooleanFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asBooleanFrom")
             )
         }
 
         "List" -> when (prop.isNullable) {
-
             true -> when (prop.typeParameters.first().typeName) {
                 "String" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringListFrom")
                 )
 
                 "Int" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerListFrom")
                 )
 
                 "Long" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongListFrom")
                 )
 
                 "Float" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatListFrom")
                 )
 
                 "Double" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleListFrom")
                 )
 
                 else -> addStatement(
                     "\t%N = \"%L\".%M(this) { to${prop.typeParameters.first().typeName}() },",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableObjectListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableObjectListFrom")
                 )
             }
 
@@ -162,82 +160,81 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringListFrom")
                 )
 
                 "Int" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerListFrom")
                 )
 
                 "Long" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongListFrom")
                 )
 
                 "Float" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatListFrom")
                 )
 
                 "Double" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleListFrom")
                 )
 
                 else -> addStatement(
                     "\t%N = \"%L\".%M(this) { to${prop.typeParameters.first().typeName}() },",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asObjectListFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asObjectListFrom")
                 )
             }
         }
 
         "Set" -> when (prop.isNullable) {
-
             true -> when (prop.typeParameters.first().typeName) {
                 "String" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableStringSetFrom")
                 )
 
                 "Int" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableIntegerSetFrom")
                 )
 
                 "Long" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableLongSetFrom")
                 )
 
                 "Float" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableFloatSetFrom")
                 )
 
                 "Double" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableDoubleSetFrom")
                 )
 
                 else -> {
@@ -250,35 +247,35 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asStringSetFrom")
                 )
 
                 "Int" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asIntegerSetFrom")
                 )
 
                 "Long" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asLongSetFrom")
                 )
 
                 "Float" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asFloatSetFrom")
                 )
 
                 "Double" -> addStatement(
                     "\t%N = \"%L\" %M this,",
                     prop.name,
                     prop.name,
-                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleSetFrom"),
+                    MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asDoubleSetFrom")
                 )
 
                 else -> {
@@ -292,14 +289,14 @@ internal fun FunSpec.Builder.generateCodeForProperty(prop: KotlinProperty) = app
                 "\t%N = \"%L\".%M(this) { to${prop.type}() },",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableObjectFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asNullableObjectFrom")
             )
 
             false -> addStatement(
                 "\t%N = \"%L\".%M(this) { to${prop.type}() },",
                 prop.name,
                 prop.name,
-                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asObjectFrom"),
+                MemberName(packageName = "com.aseemsavio.dynamokt.extensions", "asObjectFrom")
             )
         }
     }

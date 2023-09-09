@@ -1,69 +1,307 @@
 package com.aseemsavio.dynamokt.extensions
 
-infix fun String.asStringFrom(map: AttributeMap): String = map[this]!!.s()
-infix fun String.asNullableStringFrom(map: AttributeMap): String? = map[this]?.s()
-infix fun String.asIntegerFrom(map: AttributeMap): Int = map[this]!!.n().toInt()
-infix fun String.asNullableIntegerFrom(map: AttributeMap): Int? = map[this]?.n()?.toInt()
-infix fun String.asFloatFrom(map: AttributeMap): Float = map[this]!!.n().toFloat()
-infix fun String.asNullableFloatFrom(map: AttributeMap): Float? = map[this]?.n()?.toFloat()
-infix fun String.asDoubleFrom(map: AttributeMap): Double = map[this]!!.n().toDouble()
-infix fun String.asNullableDoubleFrom(map: AttributeMap): Double? = map[this]?.n()?.toDouble()
-infix fun String.asLongFrom(map: AttributeMap): Long = map[this]!!.n().toLong()
-infix fun String.asNullableLongFrom(map: AttributeMap): Long? = map[this]?.n()?.toLong()
-infix fun String.asBooleanFrom(map: AttributeMap): Boolean = map[this]!!.bool()
-infix fun String.asNullableBooleanFrom(map: AttributeMap): Boolean? = map[this]?.bool()
-infix fun String.asStringListFrom(map: AttributeMap): List<String> = map[this]!!.l().map { it.s() }
-infix fun String.asNullableStringListFrom(map: AttributeMap): List<String>? = map[this]?.l()?.map { it.s() }
-infix fun String.asIntegerListFrom(map: AttributeMap): List<Int> = map[this]!!.l().map { it.n().toInt() }
-infix fun String.asNullableIntegerListFrom(map: AttributeMap): List<Int>? = map[this]?.l()?.map { it.n().toInt() }
-infix fun String.asLongListFrom(map: AttributeMap): List<Long> = map[this]!!.l().map { it.n().toLong() }
-infix fun String.asNullableLongListFrom(map: AttributeMap): List<Long>? = map[this]?.l()?.map { it.n().toLong() }
-infix fun String.asFloatListFrom(map: AttributeMap): List<Float> = map[this]!!.l().map { it.n().toFloat() }
-infix fun String.asNullableFloatListFrom(map: AttributeMap): List<Float>? = map[this]?.l()?.map { it.n().toFloat() }
-infix fun String.asDoubleListFrom(map: AttributeMap): List<Double> = map[this]!!.l().map { it.n().toDouble() }
-infix fun String.asNullableDoubleListFrom(map: AttributeMap): List<Double>? = map[this]?.l()?.map { it.n().toDouble() }
-inline fun <T> String.asObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T> =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [String]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asStringFrom(map: AttributeMap): String = map[this]!!.s()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [String]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableStringFrom(map: AttributeMap): String? = map[this]?.s()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Int]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asIntegerFrom(map: AttributeMap): Int = map[this]!!.n().toInt()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Int]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableIntegerFrom(map: AttributeMap): Int? = map[this]?.n()?.toInt()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Float]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asFloatFrom(map: AttributeMap): Float = map[this]!!.n().toFloat()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Float]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableFloatFrom(map: AttributeMap): Float? = map[this]?.n()?.toFloat()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Double]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asDoubleFrom(map: AttributeMap): Double = map[this]!!.n().toDouble()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Double]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableDoubleFrom(map: AttributeMap): Double? = map[this]?.n()?.toDouble()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Long]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asLongFrom(map: AttributeMap): Long = map[this]!!.n().toLong()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Long]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableLongFrom(map: AttributeMap): Long? = map[this]?.n()?.toLong()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Boolean]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asBooleanFrom(map: AttributeMap): Boolean = map[this]!!.bool()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Boolean]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableBooleanFrom(map: AttributeMap): Boolean? = map[this]?.bool()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [String]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asStringListFrom(map: AttributeMap): List<String> = map[this]!!.l().map { it.s() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [String]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableStringListFrom(map: AttributeMap): List<String>? = map[this]?.l()?.map { it.s() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [Int]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asIntegerListFrom(map: AttributeMap): List<Int> = map[this]!!.l().map { it.n().toInt() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [Int]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableIntegerListFrom(map: AttributeMap): List<Int>? = map[this]?.l()?.map { it.n().toInt() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [Long]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asLongListFrom(map: AttributeMap): List<Long> = map[this]!!.l().map { it.n().toLong() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [Long]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableLongListFrom(map: AttributeMap): List<Long>? = map[this]?.l()?.map { it.n().toLong() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [Float]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asFloatListFrom(map: AttributeMap): List<Float> = map[this]!!.l().map { it.n().toFloat() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [Float]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableFloatListFrom(map: AttributeMap): List<Float>? =
+    map[this]?.l()?.map { it.n().toFloat() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [Double]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asDoubleListFrom(map: AttributeMap): List<Double> = map[this]!!.l().map { it.n().toDouble() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [Double]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableDoubleListFrom(map: AttributeMap): List<Double>? =
+    map[this]?.l()?.map { it.n().toDouble() }
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [List] of [T]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+inline fun <T> PropertyName.asObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T> =
     map[this]!!.l().map { it.m().objConverter() }
 
-inline fun <T> String.asNullableObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T>? =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [List] of [T]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+inline fun <T> PropertyName.asNullableObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T>? =
     map[this]?.l()?.map { it.m().objConverter() }
 
-infix fun String.asStringSetFrom(map: AttributeMap): Set<String> = map[this]!!.ss().toSet()
-infix fun String.asNullableStringSetFrom(map: AttributeMap): Set<String>? = map[this]?.ss()?.toSet()
-infix fun String.asIntegerSetFrom(map: AttributeMap): Set<Int> = map[this]!!.ns().map { it.toInt() }.toSet()
-infix fun String.asNullableIntegerSetFrom(map: AttributeMap): Set<Int>? = map[this]?.ns()?.map { it.toInt() }?.toSet()
-infix fun String.asLongSetFrom(map: AttributeMap): Set<Long> = map[this]!!.ns().map { it.toLong() }.toSet()
-infix fun String.asNullableLongSetFrom(map: AttributeMap): Set<Long>? = map[this]?.ns()?.map { it.toLong() }?.toSet()
-infix fun String.asFloatSetFrom(map: AttributeMap): Set<Float> = map[this]!!.ns().map { it.toFloat() }.toSet()
-infix fun String.asNullableFloatSetFrom(map: AttributeMap): Set<Float>? =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Set] of [String]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asStringSetFrom(map: AttributeMap): Set<String> = map[this]!!.ss().toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Set] of [String]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableStringSetFrom(map: AttributeMap): Set<String>? = map[this]?.ss()?.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Set] of [Int]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asIntegerSetFrom(map: AttributeMap): Set<Int> = map[this]!!.ns().map { it.toInt() }.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Set] of [Int]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableIntegerSetFrom(map: AttributeMap): Set<Int>? =
+    map[this]?.ns()?.map { it.toInt() }?.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Set] of [Long]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asLongSetFrom(map: AttributeMap): Set<Long> = map[this]!!.ns().map { it.toLong() }.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Set] of [Long]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableLongSetFrom(map: AttributeMap): Set<Long>? =
+    map[this]?.ns()?.map { it.toLong() }?.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Set] of [Float]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asFloatSetFrom(map: AttributeMap): Set<Float> = map[this]!!.ns().map { it.toFloat() }.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Set] of [Float]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableFloatSetFrom(map: AttributeMap): Set<Float>? =
     map[this]?.ns()?.map { it.toFloat() }?.toSet()
 
-infix fun String.asDoubleSetFrom(map: AttributeMap): Set<Double> = map[this]!!.ns().map { it.toDouble() }.toSet()
-infix fun String.asNullableDoubleSetFrom(map: AttributeMap): Set<Double>? =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [Set] of [Double]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asDoubleSetFrom(map: AttributeMap): Set<Double> = map[this]!!.ns().map { it.toDouble() }.toSet()
+
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [Set] of [Double]s
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+infix fun PropertyName.asNullableDoubleSetFrom(map: AttributeMap): Set<Double>? =
     map[this]?.ns()?.map { it.toDouble() }?.toSet()
 
-inline fun <T> String.asObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a [T]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+inline fun <T> PropertyName.asObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T =
     map[this]!!.m().objConverter()
 
-inline fun <T> String.asNullableObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T? =
+/**
+ * Extracts the value of [PropertyName] from the provided [AttributeMap] as a nullable [T]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+inline fun <T> PropertyName.asNullableObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T? =
     map[this]?.m()?.objConverter()
 
-/*
-fun Map<String, AttributeValue>.toAllTypes(): AllTypes {
-
-    return AllTypes(
-        integer = this integerNamed "integer",
-        floating = this floatNamed "floating",
-        double = this doubleNamed "double",
-        long = this longNamed "long",
-        nullableLong = this nullableLongNamed "nullableLong",
-        bool = this booleanNamed "bool",
-        list = this stringListNamed "list",
-        set = this stringSetNamed "set",
-        obj = this.objectNamed("obj") { toWorld() },
-        objs = this.objectListNamed("objs") { toWorld() },
-        nullableObj = this.nullableObjectListNamed("nullableObj") { toWorld() },
-        nestedObj = this.objectNamed("nestedObj") { toHello() }
-
-    )
-}*/
+/**
+ * A [PropertyName] is actually a [String]
+ *
+ * @author Aseem Savio
+ * @since 0.0.1
+ */
+typealias PropertyName = String
