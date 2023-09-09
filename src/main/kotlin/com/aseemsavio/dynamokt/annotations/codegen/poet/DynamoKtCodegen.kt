@@ -44,6 +44,18 @@ internal fun generateDynamoKtCode(
             .addPropertiesToMap(dataClassInfo)
             .addStatement("return attributeMap")
             .build()
+    ).addFunction(
+        FunSpec.builder(
+            name = "to${dataClassInfo.simpleName}"
+        ).receiver(ClassName(packageName = "com.aseemsavio.dynamokt.extensions.attributes", "AttributeMap"))
+            .returns(ClassName(packageName = dataClassInfo.packageName, dataClassInfo.simpleName))
+            .addKdoc(
+                """
+                    This generated function converts a [AttributeMap] into a [${dataClassInfo.simpleName}] object.
+                """.trimIndent()
+            )
+            .generateDataClassConstructionCode(dataClassInfo = dataClassInfo)
+            .build()
     ).build().writeTo(codeGenerator, aggregating = false).also {
         logger.info("Generated code for ${classDeclaration.simpleName.asString()}")
     }
