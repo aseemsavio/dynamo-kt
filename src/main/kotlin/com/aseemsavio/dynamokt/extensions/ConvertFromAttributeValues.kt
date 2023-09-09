@@ -1,52 +1,52 @@
 package com.aseemsavio.dynamokt.extensions
 
-infix fun AttributeMap.stringNamed(name: String): String = this[name]!!.s()
-infix fun AttributeMap.nullableStringNamed(name: String): String? = this[name]?.s()
-infix fun AttributeMap.integerNamed(name: String): Int = this[name]!!.n().toInt()
-infix fun AttributeMap.nullableIntegerNamed(name: String): Int? = this[name]?.n()?.toInt()
-infix fun AttributeMap.floatNamed(name: String): Float = this[name]!!.n().toFloat()
-infix fun AttributeMap.nullableFloatNamed(name: String): Float? = this[name]?.n()?.toFloat()
-infix fun AttributeMap.doubleNamed(name: String): Double = this[name]!!.n().toDouble()
-infix fun AttributeMap.nullableDoubleNamed(name: String): Double? = this[name]?.n()?.toDouble()
-infix fun AttributeMap.longNamed(name: String): Long = this[name]!!.n().toLong()
-infix fun AttributeMap.nullableLongNamed(name: String): Long? = this[name]?.n()?.toLong()
-infix fun AttributeMap.booleanNamed(name: String): Boolean = this[name]!!.bool()
-infix fun AttributeMap.nullableBooleanNamed(name: String): Boolean? = this[name]?.bool()
-infix fun AttributeMap.stringListNamed(name: String): List<String> = this[name]!!.l().map { it.s() }
-infix fun AttributeMap.nullableStringListNamed(name: String): List<String>? = this[name]?.l()?.map { it.s() }
-infix fun AttributeMap.integerListNamed(name: String): List<Int> = this[name]!!.l().map { it.n().toInt() }
-infix fun AttributeMap.nullableIntegerListNamed(name: String): List<Int>? = this[name]?.l()?.map { it.n().toInt() }
-infix fun AttributeMap.longListNamed(name: String): List<Long> = this[name]!!.l().map { it.n().toLong() }
-infix fun AttributeMap.nullableLongListNamed(name: String): List<Long>? = this[name]?.l()?.map { it.n().toLong() }
-infix fun AttributeMap.floatListNamed(name: String): List<Float> = this[name]!!.l().map { it.n().toFloat() }
-infix fun AttributeMap.nullableFloatListNamed(name: String): List<Float>? = this[name]?.l()?.map { it.n().toFloat() }
-infix fun AttributeMap.doubleListNamed(name: String): List<Double> = this[name]!!.l().map { it.n().toDouble() }
-infix fun AttributeMap.nullableDoubleListNamed(name: String): List<Double>? = this[name]?.l()?.map { it.n().toDouble() }
-inline fun <T> AttributeMap.objectListNamed(name: String, objConverter: AttributeMap.() -> T): List<T> =
-    this[name]!!.l().map { it.m().objConverter() }
+infix fun String.asStringFrom(map: AttributeMap): String = map[this]!!.s()
+infix fun String.asNullableStringFrom(map: AttributeMap): String? = map[this]?.s()
+infix fun String.asIntegerFrom(map: AttributeMap): Int = map[this]!!.n().toInt()
+infix fun String.asNullableIntegerFrom(map: AttributeMap): Int? = map[this]?.n()?.toInt()
+infix fun String.asFloatFrom(map: AttributeMap): Float = map[this]!!.n().toFloat()
+infix fun String.asNullableFloatFrom(map: AttributeMap): Float? = map[this]?.n()?.toFloat()
+infix fun String.asDoubleFrom(map: AttributeMap): Double = map[this]!!.n().toDouble()
+infix fun String.asNullableDoubleFrom(map: AttributeMap): Double? = map[this]?.n()?.toDouble()
+infix fun String.asLongFrom(map: AttributeMap): Long = map[this]!!.n().toLong()
+infix fun String.asNullableLongFrom(map: AttributeMap): Long? = map[this]?.n()?.toLong()
+infix fun String.asBooleanFrom(map: AttributeMap): Boolean = map[this]!!.bool()
+infix fun String.asNullableBooleanFrom(map: AttributeMap): Boolean? = map[this]?.bool()
+infix fun String.asStringListFrom(map: AttributeMap): List<String> = map[this]!!.l().map { it.s() }
+infix fun String.asNullableStringListFrom(map: AttributeMap): List<String>? = map[this]?.l()?.map { it.s() }
+infix fun String.asIntegerListFrom(map: AttributeMap): List<Int> = map[this]!!.l().map { it.n().toInt() }
+infix fun String.asNullableIntegerListFrom(map: AttributeMap): List<Int>? = map[this]?.l()?.map { it.n().toInt() }
+infix fun String.asLongListFrom(map: AttributeMap): List<Long> = map[this]!!.l().map { it.n().toLong() }
+infix fun String.asNullableLongListFrom(map: AttributeMap): List<Long>? = map[this]?.l()?.map { it.n().toLong() }
+infix fun String.asFloatListFrom(map: AttributeMap): List<Float> = map[this]!!.l().map { it.n().toFloat() }
+infix fun String.asNullableFloatListFrom(map: AttributeMap): List<Float>? = map[this]?.l()?.map { it.n().toFloat() }
+infix fun String.asDoubleListFrom(map: AttributeMap): List<Double> = map[this]!!.l().map { it.n().toDouble() }
+infix fun String.asNullableDoubleListFrom(map: AttributeMap): List<Double>? = map[this]?.l()?.map { it.n().toDouble() }
+inline fun <T> String.asObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T> =
+    map[this]!!.l().map { it.m().objConverter() }
 
-inline fun <T> AttributeMap.nullableObjectListNamed(name: String, objConverter: AttributeMap.() -> T): List<T>? =
-    this[name]?.l()?.map { it.m().objConverter() }
+inline fun <T> String.asNullableObjectListFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): List<T>? =
+    map[this]?.l()?.map { it.m().objConverter() }
 
-infix fun AttributeMap.stringSetNamed(name: String): Set<String> = this[name]!!.ss().toSet()
-infix fun AttributeMap.nullableStringSetNamed(name: String): Set<String>? = this[name]?.ss()?.toSet()
-infix fun AttributeMap.integerSetNamed(name: String): Set<Int> = this[name]!!.ns().map { it.toInt() }.toSet()
-infix fun AttributeMap.nullableIntegerSetNamed(name: String): Set<Int>? = this[name]?.ns()?.map { it.toInt() }?.toSet()
-infix fun AttributeMap.longSetNamed(name: String): Set<Long> = this[name]!!.ns().map { it.toLong() }.toSet()
-infix fun AttributeMap.nullableLongSetNamed(name: String): Set<Long>? = this[name]?.ns()?.map { it.toLong() }?.toSet()
-infix fun AttributeMap.floatSetNamed(name: String): Set<Float> = this[name]!!.ns().map { it.toFloat() }.toSet()
-infix fun AttributeMap.nullableFloatSetNamed(name: String): Set<Float>? =
-    this[name]?.ns()?.map { it.toFloat() }?.toSet()
+infix fun String.asStringSetFrom(map: AttributeMap): Set<String> = map[this]!!.ss().toSet()
+infix fun String.asNullableStringSetFrom(map: AttributeMap): Set<String>? = map[this]?.ss()?.toSet()
+infix fun String.asIntegerSetFrom(map: AttributeMap): Set<Int> = map[this]!!.ns().map { it.toInt() }.toSet()
+infix fun String.asNullableIntegerSetFrom(map: AttributeMap): Set<Int>? = map[this]?.ns()?.map { it.toInt() }?.toSet()
+infix fun String.asLongSetFrom(map: AttributeMap): Set<Long> = map[this]!!.ns().map { it.toLong() }.toSet()
+infix fun String.asNullableLongSetFrom(map: AttributeMap): Set<Long>? = map[this]?.ns()?.map { it.toLong() }?.toSet()
+infix fun String.asFloatSetFrom(map: AttributeMap): Set<Float> = map[this]!!.ns().map { it.toFloat() }.toSet()
+infix fun String.asNullableFloatSetFrom(map: AttributeMap): Set<Float>? =
+    map[this]?.ns()?.map { it.toFloat() }?.toSet()
 
-infix fun AttributeMap.doubleSetNamed(name: String): Set<Double> = this[name]!!.ns().map { it.toDouble() }.toSet()
-infix fun AttributeMap.nullableDoubleSetNamed(name: String): Set<Double>? =
-    this[name]?.ns()?.map { it.toDouble() }?.toSet()
+infix fun String.asDoubleSetFrom(map: AttributeMap): Set<Double> = map[this]!!.ns().map { it.toDouble() }.toSet()
+infix fun String.asNullableDoubleSetFrom(map: AttributeMap): Set<Double>? =
+    map[this]?.ns()?.map { it.toDouble() }?.toSet()
 
-inline fun <T> AttributeMap.objectNamed(name: String, objConverter: AttributeMap.() -> T): T =
-    this[name]!!.m().objConverter()
+inline fun <T> String.asObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T =
+    map[this]!!.m().objConverter()
 
-inline fun <T> AttributeMap.nullableObjectNamed(name: String, objConverter: AttributeMap.() -> T): T? =
-    this[name]?.m()?.objConverter()
+inline fun <T> String.asNullableObjectFrom(map: AttributeMap, objConverter: AttributeMap.() -> T): T? =
+    map[this]?.m()?.objConverter()
 
 /*
 fun Map<String, AttributeValue>.toAllTypes(): AllTypes {

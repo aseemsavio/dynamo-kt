@@ -49,6 +49,7 @@ internal fun generateDynamoKtCode(
             name = "to${dataClassInfo.simpleName}"
         ).receiver(ClassName(packageName = "com.aseemsavio.dynamokt.extensions", "AttributeMap"))
             .returns(ClassName(packageName = dataClassInfo.packageName, dataClassInfo.simpleName))
+            .generateDataClassConstructionCode(dataClassInfo = dataClassInfo)
             .addCode(
                 """
                 TODO()
