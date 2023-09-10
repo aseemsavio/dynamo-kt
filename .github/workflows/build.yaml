@@ -1,0 +1,43 @@
+name: Build with Gradle on Multiple Java Versions
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version:
+          - 8
+          - 11
+          - 17
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts-${{ matrix.java-version }}
+          path: build/libs/*.jar  # Adjust to your build output directory and file(s)
+
+      - name: Publish Gradle Build Status
+        uses: badboy/github-action-publish-gradle-status@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,9 @@
 # dynamo-kt: Simplified DynamoDB Interactions for Kotlin
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Contributors](https://img.shields.io/github/contributors/aseemsavio/dynamo-kt)](https://github.com/aseemsavio/dynamo-kt/graphs/contributors)
+
+
 Welcome to dynamo-kt – a Kotlin library that simplifies and enhances interactions with the official AWS DynamoDB SDK.
 This library provides a set of extension functions, utility classes, and code generation capabilities to make working
 with DynamoDB easier, more efficient, and more enjoyable for Kotlin developers.
