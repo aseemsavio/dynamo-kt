@@ -1,5 +1,6 @@
 # dynamo-kt: Simplified DynamoDB Interactions for Kotlin
 
+[![Gradle Build](https://github.com/github/docs/actions/workflows/build.yml/badge.svg)](https://github.com/aseemsavio/dynamo-kt/actions)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Contributors](https://img.shields.io/github/contributors/aseemsavio/dynamo-kt)](https://github.com/aseemsavio/dynamo-kt/graphs/contributors)
 
