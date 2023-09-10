@@ -39,7 +39,7 @@ dependencies {
 ```
 ### Documentation
 
-For detailed documentation and examples, please visit our [Wiki]().
+For detailed documentation and examples, please visit our [documentation page.](https://aseemsavio.github.io/dynamo-kt/index.html).
 
 ### Contributing
 
