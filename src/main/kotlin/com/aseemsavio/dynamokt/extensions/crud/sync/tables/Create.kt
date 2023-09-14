@@ -7,14 +7,17 @@ import software.amazon.awssdk.services.dynamodb.model.*
 
 // https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html
 
+/**
+ * DSL for creating a new Dynamo DB table.
+ */
 fun DynamoDbClient.newTable(block: CreateTableRequest.Builder.() -> Unit): TableName {
     val waiter = waiter()
     val createTableRequest = CreateTableRequest.builder().apply(block).build()
     val tableName = createTableRequest.tableName()
     val createTableResponse = createTable(createTableRequest)
     val describeTableRequest = DescribeTableRequest.builder()
-            .tableName(tableName)
-            .build()
+        .tableName(tableName)
+        .build()
     val waiterResponse: WaiterResponse<DescribeTableResponse> = waiter.waitUntilTableExists(describeTableRequest)
     waiterResponse.matched().response().ifPresent { println(it) }
     return TableName(createTableResponse.tableDescription().tableName())
@@ -24,25 +27,30 @@ fun DynamoDbClient.newTable(block: CreateTableRequest.Builder.() -> Unit): Table
  * DSL for creating an [AttributeDefinition].
  */
 fun attributeDefinition(block: AttributeDefinition.Builder.() -> Unit): AttributeDefinition =
-        AttributeDefinition.builder().apply(block).build()
+    AttributeDefinition.builder().apply(block).build()
 
 /**
  * DSL for creating a [KeySchemaElement].
  */
 fun keySchemaElement(block: KeySchemaElement.Builder.() -> Unit): KeySchemaElement =
-        KeySchemaElement.builder().apply(block).build()
+    KeySchemaElement.builder().apply(block).build()
 
 /**
  * DSL for creating a [GlobalSecondaryIndex].
  */
 fun globalSecondaryIndex(block: GlobalSecondaryIndex.Builder.() -> Unit): GlobalSecondaryIndex =
-        GlobalSecondaryIndex.builder().apply(block).build()
+    GlobalSecondaryIndex.builder().apply(block).build()
 
 /**
  * DSL for creating a [LocalSecondaryIndex].
  */
 fun localSecondaryIndex(block: LocalSecondaryIndex.Builder.() -> Unit): LocalSecondaryIndex =
-        LocalSecondaryIndex.builder().apply(block).build()
+    LocalSecondaryIndex.builder().apply(block).build()
+
+/**
+ * DSL for creating a [Tag].
+ */
+fun tag(block: Tag.Builder.() -> Unit): Tag = Tag.builder().apply(block).build()
 
 /**
  * DSL for creating [SSESpecification].
@@ -56,6 +64,13 @@ fun CreateTableRequest.Builder.sseSpecificationDynamoKt(block: SSESpecification.
  */
 fun CreateTableRequest.Builder.provisionedThroughputDynamoKt(block: ProvisionedThroughput.Builder.() -> Unit) = apply {
     provisionedThroughput(ProvisionedThroughput.builder().apply(block).build())
+}
+
+/**
+ * DSL for creating [StreamSpecification].
+ */
+fun CreateTableRequest.Builder.streamSpecificationDynamoKt(block: StreamSpecification.Builder.() -> Unit) = apply {
+    streamSpecification(StreamSpecification.builder().apply(block).build())
 }
 
 /**
