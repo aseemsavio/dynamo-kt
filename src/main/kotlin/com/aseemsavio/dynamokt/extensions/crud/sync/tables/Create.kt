@@ -2,8 +2,17 @@ package com.aseemsavio.dynamokt.extensions.crud.sync.tables
 
 import software.amazon.awssdk.core.waiters.WaiterResponse
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
-import software.amazon.awssdk.services.dynamodb.model.*
-
+import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition
+import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest
+import software.amazon.awssdk.services.dynamodb.model.DescribeTableRequest
+import software.amazon.awssdk.services.dynamodb.model.DescribeTableResponse
+import software.amazon.awssdk.services.dynamodb.model.GlobalSecondaryIndex
+import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement
+import software.amazon.awssdk.services.dynamodb.model.LocalSecondaryIndex
+import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput
+import software.amazon.awssdk.services.dynamodb.model.SSESpecification
+import software.amazon.awssdk.services.dynamodb.model.StreamSpecification
+import software.amazon.awssdk.services.dynamodb.model.Tag
 
 // https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/examples-dynamodb.html
 
