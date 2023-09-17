@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.9.0"
 }
 
-group = "com.aseemsavio"
+group = "com.aseemsavio.dynamokt"
 version = "1.0-SNAPSHOT"
 
 repositories {

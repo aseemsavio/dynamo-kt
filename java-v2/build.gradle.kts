@@ -14,13 +14,12 @@ repositories {
 }
 
 dependencies {
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.11")
-    implementation("com.squareup:kotlinpoet:1.14.2")
-    implementation("com.squareup:kotlinpoet-ksp:1.14.2")
-    implementation(project(":annotations"))
-
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    api(platform("software.amazon.awssdk:bom:2.20.135"))
+    // https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb
+    api("software.amazon.awssdk:dynamodb")
+    api(project(":annotations"))
 }
 
 tasks.test {
