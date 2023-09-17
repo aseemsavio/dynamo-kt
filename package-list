@@ -1,0 +1,13 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:annotations
+com.aseemsavio.dynamokt.annotations.java.v1
+com.aseemsavio.dynamokt.annotations.java.v2
+com.aseemsavio.dynamokt.annotations.kotlin
+module:java-v1
+com.aseemsavio.dynamokt.extensions.java.v1
+module:java-v2
+com.aseemsavio.dynamokt.extensions.java.v2
+module:kotlin
+com.aseemsavio.dynamokt.extensions.kotlin

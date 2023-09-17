@@ -1,1 +1,1 @@
-sourceset_dependencies='{":dokkaHtml/main":[]}'
+sourceset_dependencies = '{":java-v1:dokkaHtmlPartial/main":[],":java-v2:dokkaHtmlPartial/main":[],":kotlin:dokkaHtmlPartial/main":[],":annotations:dokkaHtmlPartial/main":[]}'
