@@ -33,6 +33,10 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+}
+
 tasks.test {
     useJUnitPlatform()
 }

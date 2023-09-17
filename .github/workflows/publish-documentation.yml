@@ -1,6 +1,9 @@
 name: Publish Dokka HTML to GitHub Pages
 
 on:
+  push:
+    branches:
+      - master
   release:
     types: [ published ]
 
@@ -19,12 +22,12 @@ jobs:
           distribution: 'adopt'
 
       - name: Build Dokka HTML
-        run: ./gradlew dokkaHtml
+        run: ./gradlew dokkaHtmlMultiModule
 
       - name: Move Dokka HTML to Docs Directory
         run: |
           mkdir -p docs
-          mv build/dokka/html/* docs/
+          mv build/dokka/htmlMultiModule/* docs/
         if: success()
 
       - name: Deploy to GitHub Pages

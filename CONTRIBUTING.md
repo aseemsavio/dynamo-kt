@@ -106,5 +106,5 @@ Thank you for contributing to [dynamokt]()!
 ### Generating HTML Kotlin Documentation
 
 ```
-./gradlew dokkaHtml
+./gradlew dokkaHtmlMultiModule
 ```
