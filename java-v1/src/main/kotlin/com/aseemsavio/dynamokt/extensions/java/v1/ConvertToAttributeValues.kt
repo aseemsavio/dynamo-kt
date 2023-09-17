@@ -1,6 +1,6 @@
-package com.aseemsavio.dynamokt.extensions.java.v2
+package com.aseemsavio.dynamokt.extensions.java.v1
 
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue
+import com.amazonaws.services.dynamodbv2.model.AttributeValue
 
 /**
  * This property converts a nullable [String] to DynamoDb [DynamoAttributeValue].
@@ -10,9 +10,9 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue
  */
 val String?.attributeValue: DynamoAttributeValue
     get() = if (null != this) {
-        DynamoAttributeValue.builder().s(this).build()
+        DynamoAttributeValue().withS(this)
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -24,9 +24,9 @@ val String?.attributeValue: DynamoAttributeValue
  */
 val Number?.attributeValue: DynamoAttributeValue
     get() = if (null != this) {
-        DynamoAttributeValue.builder().n(this.toString()).build()
+        DynamoAttributeValue().withN(this.toString())
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -37,9 +37,9 @@ val Number?.attributeValue: DynamoAttributeValue
  */
 val Boolean?.attributeValue: DynamoAttributeValue
     get() = if (null != this) {
-        DynamoAttributeValue.builder().bool(this).build()
+        DynamoAttributeValue().withBOOL(this)
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -51,9 +51,9 @@ val Boolean?.attributeValue: DynamoAttributeValue
  */
 fun Set<Number>?.attributeValueForNumberSet(): DynamoAttributeValue =
     if (null != this) {
-        DynamoAttributeValue.builder().ns(this.map { it.toString() }).build()
+        DynamoAttributeValue().withNS(this.map { it.toString() })
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -64,9 +64,9 @@ fun Set<Number>?.attributeValueForNumberSet(): DynamoAttributeValue =
  */
 fun Set<String>?.attributeValueForStringSet(): DynamoAttributeValue =
     if (null != this) {
-        DynamoAttributeValue.builder().ss(this).build()
+        DynamoAttributeValue().withSS(this)
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -77,9 +77,9 @@ fun Set<String>?.attributeValueForStringSet(): DynamoAttributeValue =
  */
 fun List<String>?.attributeValueForStringList(): DynamoAttributeValue =
     if (null != this) {
-        DynamoAttributeValue.builder().l(map { it.attributeValue }).build()
+        DynamoAttributeValue().withL(map { it.attributeValue })
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -91,9 +91,9 @@ fun List<String>?.attributeValueForStringList(): DynamoAttributeValue =
  */
 fun List<Number>?.attributeValueForNumberList(): DynamoAttributeValue =
     if (null != this) {
-        DynamoAttributeValue.builder().l(map { it.attributeValue }).build()
+        DynamoAttributeValue().withL(map { it.attributeValue })
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -105,9 +105,9 @@ fun List<Number>?.attributeValueForNumberList(): DynamoAttributeValue =
  */
 fun <T> List<T>?.attributeValueForObjectList(attributeValue: T.() -> DynamoAttributeValue): DynamoAttributeValue =
     if (null != this) {
-        DynamoAttributeValue.builder().l(map { it.attributeValue() }).build()
+        DynamoAttributeValue().withL(map { it.attributeValue() })
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
@@ -118,9 +118,9 @@ fun <T> List<T>?.attributeValueForObjectList(attributeValue: T.() -> DynamoAttri
  */
 val AttributeMap?.attributeValue: DynamoAttributeValue
     get() = if (null != this) {
-        DynamoAttributeValue.builder().m(this).build()
+        DynamoAttributeValue().withM(this)
     } else {
-        DynamoAttributeValue.builder().nul(true).build()
+        DynamoAttributeValue().withNULL(true)
     }
 
 /**
